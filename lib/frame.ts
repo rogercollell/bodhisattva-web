@@ -48,7 +48,8 @@ async function runWisdomFrame(input: RunFramingInput): Promise<WisdomFrame> {
       temperature: 0,
     });
     return output;
-  } catch {
+  } catch (err) {
+    console.error('[frame] wisdom-frame call failed:', err instanceof Error ? err.message : err);
     return fallbackFrame(input.draft);
   }
 }
@@ -68,7 +69,8 @@ async function runRevision(frame: WisdomFrame, draft: string): Promise<string | 
     });
     const trimmed = text.trim();
     return trimmed || null;
-  } catch {
+  } catch (err) {
+    console.error('[frame] revision call failed:', err instanceof Error ? err.message : err);
     return null;
   }
 }

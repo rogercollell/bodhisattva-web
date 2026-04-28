@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeAll } from 'vitest';
 
 const limitMock = vi.fn();
 
@@ -15,8 +15,15 @@ vi.mock('@upstash/ratelimit', () => ({
 }));
 
 vi.mock('@upstash/redis', () => ({
-  Redis: { fromEnv: () => ({}) },
+  Redis: class {
+    constructor(_opts: unknown) {}
+  },
 }));
+
+beforeAll(() => {
+  process.env.UPSTASH_REDIS_REST_URL = 'https://example.upstash.io';
+  process.env.UPSTASH_REDIS_REST_TOKEN = 'test-token';
+});
 
 import { checkRateLimit, ipFromHeaders } from '@/lib/ratelimit';
 

@@ -1,6 +1,9 @@
+import { DemoApp } from '@/components/DemoApp';
+import { AboutFooter } from '@/components/AboutFooter';
+
 export default function HomePage() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-[640px] flex-col gap-8 px-6 py-16">
+    <main className="mx-auto flex min-h-screen max-w-[640px] flex-col gap-10 px-6 py-16">
       <header className="space-y-3">
         <h1 className="text-3xl font-semibold tracking-tight">
           The pause before a regrettable send.
@@ -10,7 +13,8 @@ export default function HomePage() {
           sends it.
         </p>
       </header>
-      <p className="text-ink-soft">Form coming in a later task.</p>
+      <DemoApp />
+      <AboutFooter />
     </main>
   );
 }

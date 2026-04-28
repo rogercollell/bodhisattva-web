@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# bodhisattva-web
 
-## Getting Started
+> Paste a draft. See what the wisdom-frame would say.
 
-First, run the development server:
+A 60-second hosted demo of [bodhisattva-mcp](https://github.com/rogercollell/bodhisattva-mcp) — the MCP server that pauses AI before it sends an email you'll regret.
+
+This is an awareness funnel, not a product. To use the wisdom-frame on real sends, install bodhisattva-mcp locally.
+
+## Local development
 
 ```bash
+npm install
+vercel env pull .env.local   # requires `vercel link` first
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js (App Router), TypeScript, Tailwind v4
+- Vercel AI SDK + Vercel AI Gateway (Anthropic Haiku 4.5, OIDC auth)
+- Upstash Redis sliding-window rate limit (5/IP/24h)
+- vitest for unit tests
 
-## Learn More
+## Source-of-truth for the wisdom-frame prompt
 
-To learn more about Next.js, take a look at the following resources:
+The wisdom-frame and revision prompts in `lib/prompts.ts` are hand-ported from [bodhisattva-mcp](https://github.com/rogercollell/bodhisattva-mcp). See [`SYNC.md`](./SYNC.md).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT.
